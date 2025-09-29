@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up</title>
+  <style>
+    *{box-sizing:border-box}
+    body{font-family: Arial, Helvetica, sans-serif;background:#eef1f3;margin:0;padding:40px;color:#222}
+
+    .wrap{max-width:420px;margin:0 auto}
+
+    .card{background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.08);padding:22px}
+
+    .fb-logo{font-family: Arial Black, Gadget, sans-serif;color:#1877f2;font-size:48px;text-align:center;margin-bottom:6px}
+
+    h1{font-size:22px;margin:6px 0;text-align:center}
+    p.lead{color:#6b7178;text-align:center;margin:0 0 14px;font-size:14px}
+
+    form .row{display:flex;gap:12px}
+    input[type=text], input[type=email], input[type=password], select{width:100%;padding:11px 12px;border:1px solid #d5d7da;border-radius:6px;font-size:14px}
+
+    .dob-row{display:flex;gap:8px}
+    .dob-row select{flex:1}
+
+    .gender{display:flex;gap:12px;align-items:center;margin-top:6px}
+    .gender label{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #dfe3e8;border-radius:6px;cursor:pointer}
+    .gender input{width:16px;height:16px}
+
+    .small-note{font-size:12px;color:#6b7178;margin-top:12px;line-height:1.3}
+
+    .sign-up{display:block;width:100%;padding:12px;border-radius:8px;background:#28a745;border:none;color:#fff;font-weight:700;font-size:16px;margin-top:14px;cursor:pointer}
+
+    .link{display:block;text-align:center;margin-top:8px;color:#1877f2;text-decoration:none;font-size:14px}
+
+    @media (max-width:420px){body{padding:18px}.fb-logo{font-size:40px}.card{padding:16px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="fb-logo">facebook</div>
+
+    <div class="card" role="region" aria-label="Create a new account">
+      <h1>Create a new account</h1>
+      <p class="lead">It's quick and easy.</p>
+
+      <form id="signup">
+        <div class="row" style="margin-bottom:10px">
+          <input type="text" name="firstname" placeholder="First name" required autocomplete="given-name">
+          <input type="text" name="surname" placeholder="Surname" required autocomplete="family-name">
+        </div>
+
+        <div style="margin-bottom:10px">
+          <input type="email" name="email" placeholder="Mobile number or email address" required autocomplete="email">
+        </div>
+
+        <div style="margin-bottom:10px">
+          <input type="password" name="password" placeholder="New password" required autocomplete="new-password">
+        </div>
+
+        <div style="margin-top:4px;font-size:13px;color:#333">Date of birth</div>
+        <div class="dob-row" style="margin-top:6px;margin-bottom:10px">
+          <select name="day" aria-label="Day" required>
+            <option value="">Day</option>
+            <script>for(let d=1;d<=31;d++){document.write('<option>'+d+'</option>')}</script>
+          </select>
+          <select name="month" aria-label="Month" required>
+            <option value="">Month</option>
+            <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+            <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+            <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+          </select>
+          <select name="year" aria-label="Year" required>
+            <option value="">Year</option>
+            <script>for(let y=new Date().getFullYear();y>=1900;y--){document.write('<option>'+y+'</option>')}</script>
+          </select>
+        </div>
+
+        <div style="margin-top:4px;font-size:13px;color:#333">Gender</div>
+        <div class="gender" role="radiogroup" aria-label="Gender">
+          <label><input type="radio" name="gender" value="female" required>Female</label>
+          <label><input type="radio" name="gender" value="male">Male</label>
+          <label><input type="radio" name="gender" value="custom">Custom</label>
+        </div>
+
+        <p class="small-note">People who use our service may have uploaded your contact information to Facebook. <a href="#">Learn more</a>.</p>
+        <p class="small-note">By clicking Sign Up, you agree to our <a href="#">Terms</a>, <a href="#">Privacy Policy</a> and <a href="#">Cookies Policy</a>. You may receive SMS notifications from us and can opt out at any time.</p>
+
+        <button type="submit" class="sign-up">Sign Up</button>
+
+        <a class="link" href="#">Already have an account?</a>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('signup').addEventListener('submit', function(e){
+      e.preventDefault();
+      const f = new FormData(this);
+      if(!f.get('firstname')||!f.get('surname')||!f.get('email')||!f.get('password')||!f.get('gender')){
+        alert('Vui lòng điền đầy đủ thông tin.');
+        return;
+      }
+    });
+  </script>
+</body>
+</html>

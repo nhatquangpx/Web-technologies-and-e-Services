@@ -1,0 +1,53 @@
+body {
+  background-color: #dada29;   
+  font-family: Arial, Helvetica, sans-serif;
+  color: purple;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+nav {
+  min-width: 150px;
+  margin-right: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav li {
+  margin-bottom: 10px;
+}
+
+nav a {
+  color: blue;
+  text-decoration: underline;
+}
+
+main {
+  flex: 1;
+}
+
+h1 {
+  color: purple;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  nav {
+    margin-bottom: 20px;
+  }
+}

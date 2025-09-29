@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tìm kiếm - W2-HW-02 (Mô phỏng)</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --accent:#f1f1f1;
+      --muted:#6b7280;
+      --input-border:#e6e6e6;
+      --shadow: 0 1px 6px rgba(32,33,36,0.08);
+      font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:#111827;
+    }
+
+    .page {
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    main {
+      flex:1 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 24px;
+    }
+
+    .search-card {
+      width:100%;
+      max-width:900px;
+      text-align:center;
+    }
+
+    .logo {
+      font-size:112px;
+      font-weight:700;
+      letter-spacing: -4px;
+      margin-bottom:28px;
+      line-height:1;
+      user-select:none;
+    }
+    .logo .g { color:#4285F4; }
+    .logo .o1{ color:#EA4335; }
+    .logo .o2{ color:#FBBC05; }
+    .logo .g2{ color:#4285F4; }
+    .logo .l { color:#34A853; }
+    .logo .e { color:#EA4335; }
+
+    .search-form {
+      display:flex;
+      align-items:center;
+      margin: 0 auto 18px;
+      max-width:760px;
+      background:white;
+      border-radius:24px;
+      padding:10px 14px;
+      box-shadow: var(--shadow);
+      border:1px solid var(--input-border);
+    }
+    .search-form input[type="text"]{
+      flex:1 1 auto;
+      border:0;
+      outline:none;
+      font-size:18px;
+      padding:10px 12px;
+      background:transparent;
+    }
+    .search-form .mic {
+      margin-left:8px;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:transparent;
+      cursor:default;
+      font-size:18px;
+    }
+
+    .btns {
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .btn {
+      background:#f2f2f2;
+      border:1px solid #dcdcdc;
+      padding:10px 16px;
+      border-radius:6px;
+      font-size:14px;
+      cursor:pointer;
+      text-decoration:none;
+      color:#111;
+    }
+    .btn.primary {
+      background:#fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .lang-links {
+      margin-top:26px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .lang-links a{ color:#1a73e8; text-decoration:none; margin-left:8px; }
+
+    .slide-note {
+      margin-top:40px;
+      text-align:left;
+      color:var(--muted);
+      font-size:13px;
+      max-width:900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    @media (max-width:480px){
+      .logo { font-size:64px; }
+      .search-form{ padding:8px; border-radius:20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main>
+      <div class="search-card" role="main" aria-label="Mô phỏng trang tìm kiếm">
+        <div class="logo" aria-hidden="true">
+          <span class="g">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
+        </div>
+
+        <form class="search-form" action="https://www.google.com/search" method="GET" role="search">
+          <input type="text" name="q" placeholder="Tìm kiếm trên Google hoặc nhập URL" aria-label="Tìm kiếm" autocomplete="off" />
+          <button type="submit" style="display:none">Search</button>
+          <div class="mic" title="Voice / tính năng minh họa">🎤</div>
+        </form>
+
+        <div class="btns">
+          <button class="btn primary" onclick="document.querySelector('.search-form').submit();">Tìm trên Google</button>
+
+          <a class="btn" id="first-result" href="#" onclick="openFirstResult(event)">Xem trang đầu tiên tìm được</a>
+        </div>
+
+        <div class="lang-links">
+          Google có các thứ tiếng:
+          <a href="https://www.google.com/intl/en" target="_blank" rel="noopener">English</a>
+          <a href="https://www.google.com/intl/fr" target="_blank" rel="noopener">Français</a>
+          <a href="https://www.google.com/intl/zh-CN" target="_blank" rel="noopener">繁體中文</a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function openFirstResult(e){
+      e.preventDefault();
+      const q = (document.querySelector('input[name="q"]').value || '').trim();
+      if(!q){
+        window.open('https://www.google.com/search', '_blank', 'noopener');
+        return;
+      }
+      const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(q);
+      window.open(searchUrl, '_blank', 'noopener');
+    }
+
+  </script>
+</body>
+</html>
