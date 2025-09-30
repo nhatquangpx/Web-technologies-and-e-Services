@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio - Đoàn Nhật Quang</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav id="navbar" class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#welcome-section">QuangDev</a>
+      <div class="nav-links">
+        <a href="#welcome-section">Welcome</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a id="profile-link" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </nav>
+  <header id="welcome-section" class="welcome">
+    <div class="welcome-content">
+      <h1>Chào mừng đến với Portfolio của Đoàn Nhật Quang</h1>
+      <p class="lead">Tôi là một sinh viên / developer đang học hỏi và làm dự án. Dưới đây là vài project mẫu.</p>
+      <a class="cta" href="#projects">Xem dự án</a>
+    </div>
+  </header>
+  <section id="projects" class="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <article class="project-tile">
+        <a href="https://example.com/project-1" target="_blank" rel="noopener noreferrer">
+          <div class="project-thumb" aria-hidden="true">Preview</div>
+          <h3 class="project-title">Project 1 — Booking App (mẫu)</h3>
+          <p class="project-desc">Ứng dụng đặt phòng mẫu — HTML/CSS/JS.</p>
+        </a>
+      </article>
+
+      <article class="project-tile">
+        <a href="https://example.com/project-2" target="_blank" rel="noopener noreferrer">
+          <div class="project-thumb" aria-hidden="true">Preview</div>
+          <h3 class="project-title">Project 2 — Gym Management</h3>
+          <p class="project-desc">Hệ thống quản lý phòng gym (demo).</p>
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Nếu bạn muốn xem mã nguồn, truy cập <a id="profile-link-duplicate" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub của tôi</a>.</p>
+  </section>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Đoàn Nhật Quang — Portfolio demo</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      links.classList.toggle('open');
+    });
+
+    document.querySelectorAll('#navbar a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
