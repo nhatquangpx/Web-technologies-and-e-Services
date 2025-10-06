@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>W4-EX-02 - Đăng ký tài khoản</title>
+  <style>
+    :root{font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f4f6fb;margin:0;padding:24px}
+    .card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 6px 20px rgba(30,40,60,0.08);width:100%;max-width:480px}
+    h1{font-size:20px;margin:0 0 12px}
+    p.lead{color:#555;margin:0 0 18px;font-size:14px}
+    label{display:block;font-size:13px;margin:10px 0 6px}
+    input[type=text], input[type=email], input[type=tel]{width:100%;padding:10px;border-radius:8px;border:1px solid #d7dbe6;font-size:14px}
+    .hint{font-size:12px;color:#6b7280;margin-top:6px}
+    .errors{background:#fff6f6;border:1px solid #ffd6d6;color:#9b2c2c;padding:10px;border-radius:8px;margin-top:12px;display:none}
+    .success{background:#f0fdf4;border:1px solid #b7f5c8;color:#166534;padding:10px;border-radius:8px;margin-top:12px;display:none}
+    button{margin-top:16px;padding:10px 14px;border-radius:10px;border:0;background:#2563eb;color:#fff;font-weight:600;cursor:pointer}
+    small.invalid{color:#b91c1c}
+    .field-row{display:flex;gap:12px}
+    @media (max-width:420px){.field-row{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <main class="card" aria-labelledby="title">
+    <h1 id="title">W4-EX-02 — Đăng ký tài khoản</h1>
+    <p class="lead">Nhập họ tên, số điện thoại và email. Trước khi gửi form, JavaScript sẽ kiểm tra điều kiện.</p>
+
+    <form id="regForm" novalidate>
+      <label for="fullname">Họ và tên</label>
+      <input id="fullname" name="fullname" type="text" autocomplete="name" placeholder="Nguyễn Văn A" required />
+      <div class="hint">Tên không được để trống.</div>
+
+      <label for="phone">Số điện thoại</label>
+      <input id="phone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="0912345678" autocomplete="tel" required />
+      <div class="hint">Phải là 10 hoặc 11 chữ số, chỉ chứa số (ví dụ: 0912345678).</div>
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="email@domain.com" autocomplete="email" required />
+      <div class="hint">Email theo chuẩn (ví dụ: someone@example.com).</div>
+
+      <div id="errors" class="errors" role="alert" aria-live="assertive"></div>
+      <div id="success" class="success" role="status" aria-live="polite">Đăng ký thành công!</div>
+
+      <button type="submit">Đăng ký</button>
+    </form>
+
+    <script>
+      const isNotEmpty = (s) => s.trim().length > 0;
+      const isDigitsOnly = (s) => /^\d+$/.test(s);
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      const form = document.getElementById('regForm');
+      const fullnameEl = document.getElementById('fullname');
+      const phoneEl = document.getElementById('phone');
+      const emailEl = document.getElementById('email');
+      const errorsBox = document.getElementById('errors');
+      const successBox = document.getElementById('success');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorsBox.style.display = 'none';
+        successBox.style.display = 'none';
+        errorsBox.innerHTML = '';
+
+        const errors = [];
+        const name = fullnameEl.value;
+        const phone = phoneEl.value.replace(/\s|-|\(|\)/g, '');
+        const email = emailEl.value;
+
+        // Tên không rỗng
+        if (!isNotEmpty(name)) {
+          errors.push('Tên không được để trống.');
+        }
+
+        // Số điện thoại: phải là số, có 10 hoặc 11 chữ số
+        if (!isNotEmpty(phone)) {
+          errors.push('Số điện thoại không được để trống.');
+        } else if (!isDigitsOnly(phone)) {
+          errors.push('Số điện thoại chỉ được chứa chữ số (0-9).');
+        } else if (!(phone.length === 10 || phone.length === 11)) {
+          errors.push('Số điện thoại phải có 10 hoặc 11 chữ số.');
+        }
+
+        // Email: kiểm tra bằng regex
+        if (!isNotEmpty(email)) {
+          errors.push('Email không được để trống.');
+        } else if (!emailRegex.test(email)) {
+          errors.push('Email không hợp lệ.');
+        }
+
+        if (errors.length) {
+          errorsBox.style.display = 'block';
+          errorsBox.innerHTML = '<strong>Vui lòng sửa các lỗi sau:</strong><ul>' + errors.map(err => '<li>' + err + '</li>').join('') + '</ul>';
+          const firstField = errors[0].toLowerCase().includes('tên') ? fullnameEl : (errors[0].toLowerCase().includes('số điện thoại') ? phoneEl : emailEl);
+          firstField.focus();
+          return;
+        }
+        successBox.style.display = 'block';
+      });
+
+      function attachRealtimeValidation(el, validator, message) {
+        el.addEventListener('input', () => {
+          if (!validator(el.value)) {
+            el.setAttribute('aria-invalid', 'true');
+            el.title = message;
+          } else {
+            el.removeAttribute('aria-invalid');
+            el.title = '';
+          }
+        });
+      }
+
+      attachRealtimeValidation(fullnameEl, (v) => isNotEmpty(v), 'Tên không được để trống');
+      attachRealtimeValidation(phoneEl, (v) => isDigitsOnly(v.replace(/\s|-|\(|\)/g, '')) && (v.replace(/\s|\-|\(|\)/g, '').length === 10 || v.replace(/\s|\-|\(|\)/g, '').length === 11), 'Phải là 10 hoặc 11 chữ số');
+      attachRealtimeValidation(emailEl, (v) => emailRegex.test(v), 'Email chưa đúng định dạng');
+
+    </script>
+  </main>
+</body>
+</html>
