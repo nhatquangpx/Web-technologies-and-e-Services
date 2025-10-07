@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin cá nhân CTSV</title>
+    <!-- Liên kết đến file CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Thêm thư viện Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <!-- Thanh Tabs Chính -->
+    <div class="main-tabs">
+        <div class="main-tab-item" data-tab="lylich">Lý lịch</div>
+        <div class="main-tab-item" data-tab="quyetdinh">Quyết định</div>
+        <div class="main-tab-item" data-tab="khenthuong">Khen thưởng</div>
+        <div class="main-tab-item" data-tab="lienhe">Liên hệ</div>
+        <!-- Thêm các tab khác nếu cần -->
+    </div>
+
+    <!-- Khu vực Nội dung -->
+    <div class="content-area">
+        
+        <!-- Cột Trái: Ảnh, Thông tin cơ bản, Trạng thái -->
+        <div class="left-panel">
+            <div class="image-box">
+                <!-- Ảnh nền (Tòa nhà trường học) -->
+                <img class="background-img" src="./bg-img.jpg" alt="Ảnh nền trường học">
+                <!-- Avatar -->
+                <div class="avatar-container">
+                    <img class="avatar-img" src="./avt.jpg" alt="Ảnh Cá Nhân">
+                </div>
+            </div>
+
+            <div class="basic-info">
+                <div class="info-row-basic" style="margin-top: 10px;"><strong>MS:</strong> 20230001</div>
+                <div class="info-row-basic"><strong>Họ tên:</strong> Đoàn Văn A</div>
+                <div class="info-row-basic"><strong>Lớp:</strong> CNTT Việt Nhật - K67</div>
+                <div class="info-row-basic"><strong>Email:</strong> a.dv230001@sis.hust.edu.vn</div>
+            </div>
+
+            <!-- Tabs Phụ -->
+            <div class="sub-tabs">
+                <div class="sub-tab-item" data-tab="trangthai">Trạng thái</div>
+                <div class="sub-tab-item" data-tab="quanly">Quản lý</div>
+            </div>
+
+            <!-- Nội dung Trạng thái học tập -->
+            <div class="study-status-box" id="content-trangthai-status">
+                <h4>Trạng thái học tập: <span class="status-value">Học</span></h4>
+                <div class="study-status-row"><strong>CPA:</strong> 3.25</div>
+                <div class="study-status-row"><strong>ĐTB:</strong> 3.30</div>
+                <div class="study-status-row"><strong>Nợ:</strong> 3 TC</div>
+                <div class="study-status-row"><strong>Tích lũy:</strong> 45.0 TC</div>
+                <div class="study-status-row"><strong>Mức cảnh báo:</strong> Mức 1</div>
+                <div class="study-status-row"><strong>Trình độ:</strong> Năm thứ hai</div>
+            </div>
+            
+            <!-- Nội dung Quản lý (Trang trắng) -->
+            <div id="content-quanly-status" style="display:none; padding: 20px; border: 1px solid #eee; border-radius: 4px; margin-top: 10px; color: #777;">
+                (Nội dung Quản lý để trống theo yêu cầu)
+            </div>
+        </div>
+
+        <!-- Cột Phải: Thông tin chi tiết -->
+        <div class="right-panel">
+            
+            <!-- Nội dung tab Lý lịch -->
+            <div id="content-lylich-main">
+                <!-- Khối Thông tin cá nhân -->
+                <div class="detail-section">
+                    <h4>Thông tin cá nhân</h4>
+                    <div class="info-grid">
+                        <div class="info-item"><span class="label">Ngày sinh:</span><span class="value">15/05/2005</span></div>
+                        <div class="info-item"><span class="label">Nơi sinh:</span><span class="value">Tỉnh Hải Dương</span></div>
+                        <div class="info-item"><span class="label">Giới tính:</span><span class="value">Nam</span></div>
+
+                        <div class="info-item"><span class="label">Số CMTND:</span><span class="value">034205001234</span></div>
+                        <div class="info-item"><span class="label">Tôn giáo:</span><span class="value">Phật giáo</span></div>
+                        <div class="info-item"><span class="label">Ngày cấp:</span><span class="value">10/06/2021</span></div>
+
+                        <div class="info-item"><span class="label">Dân tộc:</span><span class="value">Kinh</span></div>
+                        <div class="info-item"><span class="label">Ngày vào Đảng:</span><span class="value">Chưa</span></div>
+                        <div class="info-item"><span class="label">Chi đoàn:</span><span class="value">02-K68</span></div>
+                        
+                        <div class="info-item"><span class="label">Ngày vào Đoàn:</span><span class="value">26/03/2019</span></div>
+                        <div class="info-item"></div> <!-- Cột trống -->
+                        <div class="info-item"><span class="label">Đoàn viên:</span><span class="value">Có</span></div>
+
+                        <div class="info-item full-width-row"><span class="label">Đối tượng chính sách:</span><span class="value">Hộ cận nghèo</span></div>
+                        <div class="info-item full-width-row"><span class="label">Số thẻ bảo hiểm:</span><span class="value">0123952564</span></div>
+                        <div class="info-item full-width-row"><span class="label">Địa chỉ thường trú:</span><span class="value">Xã Thanh Tùng - Huyện Thanh Miện - Tỉnh Hải Dương</span></div>
+                        <div class="info-item full-width-row"><span class="label">Nơi ở hiện tại:</span><span class="value">101 Nhà A8 - Ký túc xá Bách Khoa - Hà Nội</span></div>
+                    </div>
+                </div>
+                
+                <!-- Khối Thông tin gia đình -->
+                <div class="detail-section">
+                    <h4>Thông tin gia đình</h4>
+                    <!-- Cha -->
+                    <div class="info-grid">
+                        <div class="info-item"><span class="label">Họ và tên cha:</span><span class="value">Trần Văn Long</span></div>
+                        <div class="info-item"><span class="label">Năm sinh:</span><span class="value">1978</span></div>
+                        <div class="info-item"><span class="label">Quốc tịch:</span><span class="value">Kinh</span></div>
+
+                        <div class="info-item"><span class="label">Dân tộc:</span><span class="value">Kinh</span></div>
+                        <div class="info-item"><span class="label">Tôn giáo:</span><span class="value">Không</span></div>
+                        <div class="info-item"><span class="label">Nghề nghiệp:</span><span class="value">Lao động tự do</span></div>
+                        
+                        <div class="info-item full-width-row"><span class="label">Nơi làm việc:</span><span class="value">Tự kinh doanh tại nhà</span></div>
+                        <div class="info-item full-width-row"><span class="label">Địa chỉ thường trú:</span><span class="value">Xã Thanh Tùng - Huyện Thanh Miện - Tỉnh Hải Dương</span></div>
+                        <div class="info-item full-width-row"><span class="label">Liên hệ:</span><span class="value">0912345678</span></div>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px dashed #eee; margin: 15px 0;">
+
+                    <!-- Mẹ -->
+                    <div class="info-grid">
+                        <div class="info-item"><span class="label">Họ và tên mẹ:</span><span class="value">Nguyễn Thị Mai</span></div>
+                        <div class="info-item"><span class="label">Năm sinh:</span><span class="value">1982</span></div>
+                        <div class="info-item"><span class="label">Quốc tịch:</span><span class="value">Kinh</span></div>
+
+                        <div class="info-item"><span class="label">Dân tộc:</span><span class="value">Kinh</span></div>
+                        <div class="info-item"><span class="label">Tôn giáo:</span><span class="value">Không</span></div>
+                        <div class="info-item"><span class="label">Nghề nghiệp:</span><span class="value">Nội trợ</span></div>
+                        
+                        <div class="info-item full-width-row"><span class="label">Nơi làm việc:</span><span class="value">Tại nhà</span></div>
+                        <div class="info-item full-width-row"><span class="label">Địa chỉ thường trú:</span><span class="value">Xã Thanh Tùng - Huyện Thanh Miện - Tỉnh Hải Dương</span></div>
+                        <div class="info-item full-width-row"><span class="label">Liên hệ:</span><span class="value">0987654321</span></div>
+                    </div>
+                </div>
+
+                <!-- Khối Thông tin người thân khác -->
+                <div class="detail-section">
+                    <h4>Thông tin người thân khác:</h4>
+                    <div class="info-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="info-item"><span class="label">Thuộc hộ:</span><span class="value">Hộ cận nghèo</span></div>
+                        <div class="info-item"><span class="label">Số sổ:</span><span class="value">HN.2023.001</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nội dung các tab chính khác (Trang trắng) -->
+            <div id="content-quyetdinh-main" style="display:none; padding: 40px; border: 1px solid #eee; border-radius: 4px; color: #777; text-align: center;">
+                (Nội dung tab Quyết định để trống theo yêu cầu)
+            </div>
+            <div id="content-khenthuong-main" style="display:none; padding: 40px; border: 1px solid #eee; border-radius: 4px; color: #777; text-align: center;">
+                (Nội dung tab Khen thưởng để trống theo yêu cầu)
+            </div>
+            <div id="content-lienhe-main" style="display:none; padding: 40px; border: 1px solid #eee; border-radius: 4px; color: #777; text-align: center;">
+                (Nội dung tab Liên hệ để trống theo yêu cầu)
+            </div>
+        </div>
+    </div>
+    
+    <!-- KHU VỰC BIỂU ĐỒ MỚI -->
+    <div class="chart-container">
+        <!-- Tiêu đề lớn -->
+        <h4 style="font-size: 16px; margin-bottom: 15px; color: #333;">Biểu đồ học tập và rèn luyện</h4>
+        
+        <div class="chart-grid">
+            <!-- Biểu đồ học tập -->
+            <div class="chart-box">
+                <h5>Biểu đồ học tập</h5>
+                <div class="chart-canvas-wrapper">
+                    <canvas id="hocTapChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Biểu đồ rèn luyện -->
+            <div class="chart-box">
+                <h5>Biểu đồ rèn luyện</h5>
+                <div class="chart-canvas-wrapper">
+                    <canvas id="renLuyenChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- KẾT THÚC KHU VỰC BIỂU ĐỒ -->
+</div>
+
+<!-- Liên kết đến file JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
