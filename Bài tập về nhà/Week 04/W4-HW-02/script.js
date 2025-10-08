@@ -1,34 +1,30 @@
-// Hàm khởi tạo biểu đồ học tập
 function initializeHocTapChart() {
     const ctx = document.getElementById('hocTapChart');
 
-    // Dữ liệu mẫu (Mô phỏng 2 trục Y: TC Tích lũy (trái) và Điểm/CPA (phải))
     const hocTapData = {
-        labels: ['Năm thứ nhất', 'Năm thứ hai', 'Năm thứ ba', 'Năm thứ tư'],
+        labels: ['Học kỳ 1 (N1)', 'Học kỳ 2 (N1)', 'Học kỳ 1 (N2)', 'Học kỳ 2 (N2)', 'Học kỳ 1 (N3)'],
         datasets: [
-            // Dữ liệu CPA (Đường, Trục Y bên phải)
             {
                 label: 'CPA',
-                data: [3.20, 3.45, 3.67, 3.55],
-                borderColor: '#17a2b8', // Xanh lam nhạt
+                data: [2.80, 3.15, 3.40, 3.55, 3.70],
+                borderColor: '#17a2b8', 
                 backgroundColor: 'rgba(23, 162, 184, 0.2)',
                 type: 'line',
                 yAxisID: 'yRight',
                 tension: 0.3,
                 pointRadius: 5
             },
-            // Dữ liệu TC Tích lũy (Cột, Trục Y bên trái)
             {
                 label: 'TC Tích lũy',
-                data: [32, 64, 108, 140],
-                backgroundColor: '#007bff', // Xanh đậm
+                data: [16, 32, 50, 80, 108],
+                backgroundColor: '#007bff', 
                 yAxisID: 'yLeft'
             }
         ]
     };
 
     new Chart(ctx, {
-        type: 'bar', // Loại biểu đồ mặc định là cột
+        type: 'bar', 
         data: hocTapData,
         options: {
             responsive: true,
@@ -42,7 +38,7 @@ function initializeHocTapChart() {
                     position: 'left',
                     title: { display: true, text: 'TC Tích lũy' },
                     min: 0,
-                    max: 200,
+                    max: 150, 
                     grid: { drawOnChartArea: true }
                 },
                 yRight: {
@@ -51,8 +47,7 @@ function initializeHocTapChart() {
                     title: { display: true, text: 'Điểm (CPA/GPA)' },
                     min: 0,
                     max: 4.0,
-                    grid: { drawOnChartArea: false }, // Không vẽ grid line cho trục phải
-                    ticks: { stepSize: 0.5 }
+                    grid: { drawOnChartArea: false },
                 },
                 x: {
                     grid: { display: false }
@@ -65,13 +60,11 @@ function initializeHocTapChart() {
 // Hàm khởi tạo biểu đồ rèn luyện
 function initializeRenLuyenChart() {
     const ctx = document.getElementById('renLuyenChart');
-
-    // Dữ liệu mẫu điểm rèn luyện
     const renLuyenData = {
         labels: ['2022-1', '2022-2', '2023-1', '2023-2', '2024-1'],
         datasets: [{
             label: 'Điểm Rèn luyện',
-            data: [85, 90, 88, 92, 89],
+            data: [78, 85, 82, 90, 88],
             borderColor: '#28a745', // Xanh lá
             backgroundColor: 'rgba(40, 167, 69, 0.1)',
             fill: true,
@@ -107,7 +100,6 @@ function initializeRenLuyenChart() {
 
 // Khởi tạo các chức năng khi DOM đã sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Khởi tạo Biểu đồ ---
     initializeHocTapChart();
     initializeRenLuyenChart();
 
@@ -116,16 +108,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContents = document.querySelectorAll('[id$="-main"]');
 
     const switchMainTab = (targetId) => {
-        // Ẩn tất cả nội dung chính
         mainContents.forEach(content => {
             content.style.display = 'none';
         });
-        // Loại bỏ active khỏi tất cả tabs
         mainTabs.forEach(tab => {
             tab.classList.remove('active');
         });
         
-        // Hiển thị nội dung target và đặt tab active
         const targetContent = document.getElementById(`content-${targetId}-main`);
         if (targetContent) {
             targetContent.style.display = 'block';
@@ -149,11 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', () => {
             const targetTab = tab.getAttribute('data-tab');
             
-            // Loại bỏ active khỏi tất cả tabs phụ
             subTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
-            // Hiển thị nội dung tương ứng
             if (targetTab === 'trangthai') {
                 statusContent.style.display = 'block';
                 manageContent.style.display = 'none';
@@ -164,6 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mặc định hiển thị tab "Lý lịch" và tab phụ "Trạng thái" khi tải trang
     switchMainTab('lylich'); 
 });
