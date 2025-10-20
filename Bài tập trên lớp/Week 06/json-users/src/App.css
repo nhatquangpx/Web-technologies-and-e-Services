@@ -1,0 +1,61 @@
+body {
+  background-color: #f8fafc;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  color: #2563eb;
+  margin-bottom: 30px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+.user-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+}
+
+.user-card h2 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.user-card p {
+  margin: 6px 0;
+  color: #374151;
+}
+
+.user-card a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.user-card a:hover {
+  text-decoration: underline;
+}
