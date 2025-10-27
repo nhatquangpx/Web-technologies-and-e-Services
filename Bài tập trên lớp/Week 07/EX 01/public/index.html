@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>W6-EX-01 — CRUD Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <h1>Demo CRUD</h1>
+    </header>
+
+    <section class="card">
+      <h2>Tạo todo mới</h2>
+      <form id="todoForm" class="form">
+        <input id="title" placeholder="Tiêu đề" required aria-label="Tiêu đề" />
+        <textarea id="description" placeholder="Mô tả (tuỳ chọn)" aria-label="Mô tả"></textarea>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Thêm</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Danh sách</h2>
+      <div id="list" class="list"></div>
+    </section>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
